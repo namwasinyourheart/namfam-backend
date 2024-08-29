@@ -10,7 +10,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_groq import ChatGroq
 
 from langchain_openai import OpenAIEmbeddings
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 
 from langchain.memory import ConversationBufferMemory 
 from langchain.chains import ConversationalRetrievalChain
@@ -142,7 +142,7 @@ def get_answer(user_input):
     
     pdf_files = [
             # "../CV_Updated_1905.pdf",
-            "C:/Users/NamFam/projects/namfam/backend/CV_Updated_1905.pdf"
+            "./CV_Updated_1905.pdf"
         ]
 
     # Get PDF Text
