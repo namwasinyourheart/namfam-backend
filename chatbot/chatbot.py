@@ -115,6 +115,8 @@ def get_response(user_query, documents):
     Documents: {documents}
 
     User question: {user_question}
+
+    Again, if the question isn't relevant to topic, say "Sorry, I can't assist you with this question."
     """
 
     prompt = ChatPromptTemplate.from_template(template)
