@@ -27,7 +27,8 @@ DEBUG = True
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['namfam-backend.onrender.com', 
-                 'localhost']
+                 'localhost',
+                 '127.0.0.1']
 
 # Application definition
 
