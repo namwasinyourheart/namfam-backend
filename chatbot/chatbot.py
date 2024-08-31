@@ -143,8 +143,7 @@ def get_response(user_query, documents):
 def get_answer(user_input):
     
     pdf_files = [
-            # "../CV_Updated_1905.pdf",
-            "./CV_Updated_1905.pdf"
+            "./Resume_AIEngineer.pdf"
         ]
 
     # Get PDF Text
