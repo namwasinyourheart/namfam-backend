@@ -8,6 +8,7 @@ from langchain_mistralai import ChatMistralAI
 from langchain_core.prompts import PromptTemplate, ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_groq import ChatGroq
+from langchain_openai import ChatOpenAI
 
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -46,7 +47,9 @@ def get_llm(model_name,
             temperature=0):
     pass
 
-llm = ChatGroq(temperature=0, model_name="llama3-70b-8192")
+# llm = ChatGroq(temperature=0, model_name="llama3-70b-8192")
+
+llm = ChatOpenAI(temperature=0, model='gpt-3.5-turbo')
 
 def get_embeddings_model():
     return OpenAIEmbeddings(model="text-embedding-3-small")
