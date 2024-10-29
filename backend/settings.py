@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "chatbot",
     "aboutme",
+    "projects",
     "rest_framework",
     "corsheaders"
 ]
