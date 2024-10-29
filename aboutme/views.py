@@ -5,24 +5,25 @@ from django.shortcuts import render
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import ProfessionalExperience
+from .models import ProfessionalExperience, Certifications, Resume
 # , TechnicalSkill, Education, Certification, AdditionalInformation
 from .serializers import (
-    ProfessionalExperienceSerializer
+    ProfessionalExperienceSerializer,
+    ResumeSerializer
     # , TechnicalSkillSerializer,
     # EducationSerializer, CertificationSerializer, AdditionalInformationSerializer
 )
 
 @api_view(['GET'])
-def about_me(request):
+def about_info(request):
     experiences = ProfessionalExperience.objects.all()
     # skills = TechnicalSkill.objects.all()
     # education = Education.objects.all()
-    # certifications = Certification.objects.all()
+    # certifications = Certifications.objects.all()
     # additional_info = AdditionalInformation.objects.all()
 
     data = {
-        'experiences': ProfessionalExperienceSerializer(experiences, many=True).data,
+        'professional_experiences': ProfessionalExperienceSerializer(experiences, many=True).data,
         # 'skills': TechnicalSkillSerializer(skills, many=True).data,
         # 'education': EducationSerializer(education, many=True).data,
         # 'certifications': CertificationSerializer(certifications, many=True).data,
@@ -30,3 +31,25 @@ def about_me(request):
     }
     
     return Response(data)
+
+
+# @api_view(['GET'])
+# def resume_info(request):
+#     resume = Resume.objects.all()
+
+#     data = {
+#         'resume': ResumeSerializer(resume, many=True).data,
+#     }
+
+#     print(data)
+
+#     return Response(data)
+
+
+@api_view(['GET'])
+def resume_info(request):
+    resumes = Resume.objects.prefetch_related('certifications', 'professional_experience').select_related('education').all()
+    print("resume:", resumes)
+    serialized_resumes = ResumeSerializer(resumes, many=True)
+    
+    return Response({'resume': serialized_resumes.data})
