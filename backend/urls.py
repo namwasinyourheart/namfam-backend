@@ -23,6 +23,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/', include('chatbot.urls'),),
     path('api/', include('aboutme.urls')),
+    path('api/', include('projects.urls')),
     path('contact/', contact, name='contact'),
 ]
 
