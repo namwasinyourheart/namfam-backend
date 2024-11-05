@@ -37,10 +37,10 @@ import re
 #     return openai_api_key
 
 
-openai_api_key = os.getenv("OPENAI_API_KEY")
+# openai_api_key = os.getenv("OPENAI_API_KEY")
 # print(openai_api_key)  
 
-os.environ["OPENAI_MODEL_NAME"] = 'gpt-3.5-turbo'
+# os.environ["OPENAI_MODEL_NAME"] = 'gpt-3.5-turbo'
 
 def get_llm(model_name, 
             max_tokens=1000, 
@@ -146,7 +146,9 @@ def get_response(user_query, documents):
 def get_answer(user_input):
     
     pdf_files = [
-            "./Resume_AIEngineer.pdf"
+            # "./Resume_AIEngineer.pdf",
+            "./Resume_AIEngineer_1.pdf",
+            "./ProjectDetails.pdf"
         ]
 
     # Get PDF Text

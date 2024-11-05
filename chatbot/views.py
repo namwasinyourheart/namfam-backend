@@ -3,17 +3,27 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from .serializers import TextInputSerializer
-from .serializers import ProjectSerializer
+from .serializers import ProjectSerializer, CategorySerializer
 
 from .chatbot import *
 from rest_framework import status
 
 from .models import Project
 
+# @api_view(['GET'])
+# def project_list(request):
+#     projects = Project.objects.all().values()
+#     # print(projects)
+#     return Response(projects)
+
+
 @api_view(['GET'])
 def project_list(request):
-    projects = Project.objects.all().values()
-    return Response(projects)
+    # projects = Project.objects.all()
+    projects = Project.objects.filter(visible=True)
+    serializer = ProjectSerializer(projects, many=True)  # Use the serializer to serialize the projects
+    # print("serializer.data",serializer.data)
+    return Response(serializer.data)
 
 # @api_view(['GET'])
 # def project_detail(request, project_id):
