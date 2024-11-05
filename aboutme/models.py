@@ -1,5 +1,18 @@
 from django.db import models
 
+class Summary(models.Model):
+    summary_text = models.TextField()
+
+    def __str__(self):
+        return self.summary_text[:50]  # Short preview of the summary
+    
+class Others(models.Model):
+    details = models.TextField()  # Store concatenated key-value pairs as a single string
+
+    def __str__(self):
+        return f"Others details: {self.details}"
+    
+
 # Create your models here.
 class Contact(models.Model):
     address = models.TextField()
@@ -56,11 +69,16 @@ class Certifications(models.Model):
 
     def __str__(self):
         return f"{self.title} issued by {self.issued_by}"
-    
+
+
+
 class Resume(models.Model):
+    summary = models.ManyToManyField(Summary)  # Link to Summary
+    # summary = models.ManyToManyField(Summary, related_name="resumes")  # Link to Summary
     professional_experience = models.ManyToManyField(ProfessionalExperience)
     education = models.OneToOneField(Education, on_delete=models.CASCADE)
     certifications = models.ManyToManyField(Certifications)
+    others = models.OneToOneField(Others, on_delete=models.CASCADE, blank=True, null=True)  # Link to Others
 
     def __str__(self):
         return f"Resume of Nam"
